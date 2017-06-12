@@ -18,13 +18,16 @@ $(document).ready(function() {
     //  'http://server/study/1.2.3/image/1.2.3.2',
     //  'http://server/study/1.2.3/image/1.2.3.3',
     //  'http://server/study/1.2.3/image/1.2.3.4'
-    // ];http://localhost:8042/app/explorer.html#instance?uuid=50e5a9fd-37e5b4ee-abdc66f4-1a328550-c04dfbc5
-    // var imageIds = [
-    //     'wadouri:http://localhost:8042/instances/50e5a9fd-37e5b4ee-abdc66f4-1a328550-c04dfbc5/file'
     // ];
+
     var imageIds = [
-        'example://1'
+        'wadouri:http://localhost:8042/instances/50e5a9fd-37e5b4ee-abdc66f4-1a328550-c04dfbc5/file'
     ];
+    
+    // var imageIds = [
+    //     'example://1'
+    // ];
+    
     var currentImageIndex = 0;
     // show image #1 initially
     function updateTheImage(imageIndex) {
