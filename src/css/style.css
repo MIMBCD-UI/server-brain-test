@@ -1,0 +1,26 @@
+.center {
+  margin: auto;
+  width: 50%;
+}
+
+.dicomViewport {
+  width:550px;
+  height:550px;
+  position:relative;
+  display:inline-block;
+  color:white;
+}
+
+.dicomImage {
+  width:550px;
+  height:550px;
+  top:0px;
+  left:0px;
+  position:absolute;
+}
+
+.btnEx {
+  text-align: center;
+  display:table-cell;
+  vertical-align:middle;
+}
