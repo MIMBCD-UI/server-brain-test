@@ -4,6 +4,21 @@ var imageId = 'example://' + currentImage;
 
 $(document).ready(function() {
     var element = $('#dicomImage').get(0);
+
+    var config = {
+        maxWebWorkers: navigator.hardwareConcurrency || 1,
+        startWebWorkersOnDemand: true,
+        webWorkerPath : '/js/cornerstoneWADOImageLoaderWebWorker.js',
+        taskConfiguration: {
+            'decodeTask' : {
+                loadCodecsOnStartup : true,
+                initializeCodecsOnStartup: false,
+                codecsPath: '/js/cornerstoneWADOImageLoaderCodecs.js',
+            }
+        }
+    };
+    cornerstoneWADOImageLoader.webWorkerManager.initialize(config);
+
     cornerstone.enable(element);
     // http://server/study/{StudyInstanceUid}/image/{SOPInstanceUID}
 
@@ -21,7 +36,7 @@ $(document).ready(function() {
     // ];
 
     var imageIds = [
-        'wadouri:http://localhost:8042/instances/50e5a9fd-37e5b4ee-abdc66f4-1a328550-c04dfbc5/file'
+        'wadouri:https://cdn.rawgit.com/chafey/byozfwv/cb216551/sampleData/1.2.840.113619.2.30.1.1762295590.1623.978668950.160.dcm'
     ];
     
     // var imageIds = [
@@ -38,7 +53,8 @@ $(document).ready(function() {
         cornerstoneTools.toolColors.setFillColor("#0099ff");
         // image enable the dicomImage element
         cornerstone.enable(element);
-        cornerstone.loadImage(imageIds[currentImageIndex]).then(function(image) {
+        var promise = cornerstone.loadImage(imageIds[currentImageIndex]);
+        promise.then(function(image) {
             cornerstone.displayImage(element, image);
             cornerstoneTools.mouseInput.enable(element);
             // Enable all tools we want to use with this element
@@ -77,6 +93,8 @@ $(document).ready(function() {
                 cornerstone.updateImage(element);
             });
         });
+
+        console.log(promise);
     };
 
     updateTheImage(0);
